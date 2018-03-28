@@ -1,0 +1,25 @@
+<footer ng-if="footerStatus">
+    <div class="footer">
+        <div class="footer_content">
+            <div class="footer__text">
+                <span>© {{CurrentData()}}, WebStore.com</span>
+            </div>
+            <div class="footer__text">
+                <span>Contact us: +38 (000) 000 00 00</span>
+            </div>
+
+            <div class="footer__text">
+                <span>Find Us On:</span>
+            </div>
+            <div class="footer__icons">
+                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+                <i class="fa fa-telegram" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+    <input type="button" value="Hide footer" class="btn btn-success" ng-click="hideFooterBtn()" id="hideFooterBtn">
+</footer>

@@ -1,0 +1,71 @@
+<!-- Modal -->
+<div class="modal fade" id="submitCartModalWindow" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Ordering</h4>
+            </div>
+            <div class="modal-body container">
+                <form role="form" name="SubmitOrderForm" novalidate>
+                    <div class="form-group col-lg-5">
+                        <label for="inputFirstName">First name*:
+                            <span class="message__for__invalid__input" ng-show="SubmitOrderForm.$submitted || SubmitOrderForm.inputFirstName.$touched">
+                                <span ng-show="SubmitOrderForm.inputFirstName.$error.required">Required</span>
+                            </span>
+                        </label>
+                        <input class="form-control" type="text" name="inputFirstName" id="inputFirstUserName" ng-model="FirstUserName" required placeholder="Tom">
+                    </div>
+                    <div class="form-group col-lg-7">
+                        <label for="inputSecondName">Second name*:
+                            <span class="message__for__invalid__input" ng-show="SubmitOrderForm.$submitted || SubmitOrderForm.inputSecondName.$touched">
+                                <span ng-show="SubmitOrderForm.inputSecondName.$error.required">Required second name</span>
+                            </span>
+                        </label>
+                        <input class="form-control" type="text" name="inputSecondName" id="inputSecondUserName" ng-model="SecondUserName" required placeholder="Rider">
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="inputPhone">Phone*:
+                            <span class="message__for__invalid__input" ng-show="SubmitOrderForm.$submitted || SubmitOrderForm.inputPhone.$touched">
+                                <span ng-show="SubmitOrderForm.inputPhone.$error.required">Required phone number</span>
+                            </span>
+                        </label>
+                        <input class="form-control" type="tel" name="inputPhone" placeholder="0999999999" id="inputUserPhone" ng-model="UserPhone" required>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <label for="inputEmail">Email*:
+                            <span class="message__for__invalid__input" ng-show="SubmitOrderForm.$submitted || SubmitOrderForm.inputEmail.$touched">
+                                <span ng-show="SubmitOrderForm.inputEmail.$error.required">Required Email</span>
+<!--                                <span ng-show="SubmitOrderForm.inputEmail.$error.email">This is not a valid Email</span>-->
+                            </span>
+                        </label>
+                        <input class="form-control" type="inputEmail" name="inputEmail" placeholder="pol@gmail.com" id="inputUserEmail" ng-model="UserEmail" required>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="inputCity">City*:
+                            <span class="message__for__invalid__input" ng-show="SubmitOrderForm.$submitted || SubmitOrderForm.inputCity.$touched">
+                                <span ng-show="SubmitOrderForm.inputCity.$error.required">Required City</span>
+                            </span>
+                        </label>
+                        <input class="form-control" type="text" name="inputCity" id="inputUserCity" ng-model="UserCity" required placeholder="New york">
+                    </div>
+                    <div class="form-group col-lg-8">
+                        <label for="inputAddress">Address:</label>
+                        <input class="form-control" type="text" name="inputAddress" id="inputUserAddress" placeholder="Street Prince of Rome 123/23">
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label for="inputAdditionalInformation">Additional Information:</label>
+                        <textarea rows="3" style="resize: none" class="form-control" name="inputAdditionalInformation" id="inputUserAdditionalInformation"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer modal__footer____btn">
+                <div class="modal__footer____btn____content">
+                    <input type="submit" class="btn btn-success btn___modal___ok" data-dismiss="modal" ng-click="sendCartToAdmin()" value="Ok" ng-disabled="SubmitOrderForm.inputFirstName.$error.required || SubmitOrderForm.inputSecondName.$error.required || SubmitOrderForm.inputPhone.$error.required || SubmitOrderForm.inputEmail.$error.required || SubmitOrderForm.inputCity.$error.required">
+                    <input type="button" class="btn btn-default btn___modal___cansel" data-dismiss="modal" value="Cancel">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

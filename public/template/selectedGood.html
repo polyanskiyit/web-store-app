@@ -1,0 +1,61 @@
+<div ng-show="singleItem">
+    <br>
+    <br>
+    <br>
+    <input type="button" value="All goods" class="btn btn-warning back__to__all__goods_btn" ng-click="BackToAllGoods()">
+
+    <div class="selected__single__good">
+        <div class="single__good__img_block">
+            <img class="single__good____img" src="../img/{{selectedGood.src}}" alt="img">
+        </div>
+        <div class="single__good__info_block">
+            <div class="single__good____title">
+                <h2>{{selectedGood.name}}</h2>
+                <p><strong>Category:</strong> {{selectedGood.category}}</p>
+                <p><strong>Description: </strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sunt fugit, perferendis repellendus similique quam. Corporis optio ea culpa inventore tenetur molestias, reprehenderit beatae nisi obcaecati laborum ex adipisci debitis asperiores mollitia a, aliquid tempora, quisquam temporibus quam libero reiciendis.</p>
+                <p><strong>Price:</strong> {{selectedGood.price}}$</p>
+                <input type="button" class="btn btn-success" value="Add to cart" ng-click="addGoodItemToCart(selectedGood.id)">
+            </div>
+        </div>
+    </div>
+
+    <div class="selected__good___comments">
+       <div class="selected__good___comments___title">
+        <h3>Comments</h3>
+        </div>
+        <div ng-if="isLogin" class="selected__good___comments____login_please__block">
+            <span><a href="#" ng-click="chooseLogin()">Login</a> please if you want to write a comment!</span>
+        </div>
+
+        <div ng-show="!isLogin" class="form-group selected__good___comments____coment">
+            <div class="selected__good___comments____coment____contentStyle">
+                <div class="selected__good___comments____inputFields">
+                    <label for="nameForSelectedGoodForNewCommentInputId">Name:</label>
+                    <input name="nameForSelectedGoodForNewCommentInputId" class="form-control" type="text" id="nameForSelectedGoodForNewCommentInputId" ng-model="nameForSelectedGoodForNewCommentInput">
+                </div>
+                <div class="selected__good___comments____coment____contentStyle_____secondBlock">
+                    <label for="contentForSelectedGoodForNewCommentInputId">Content:</label>
+                    <textarea name="contentForSelectedGoodForNewCommentInputId" class="form-control" type="text" id="contentForSelectedGoodForNewCommentInputId" ng-model="contentForSelectedGoodForNewCommentInput"></textarea>
+                </div>
+                <div>
+                    <input class="btn btn-success save__New__Comment__btn" type="button" value="Send" ng-click="SaveNewComment()">
+                </div>
+            </div>
+        </div>
+
+        <div class="selected__good___comments____coment" ng-repeat="comment in selectedGood.comments | orderBy:'+':true">
+            <div class="selected__good___comments____coment____contentStyle">
+                <header>
+                    <span><strong>{{comment.name}}</strong></span>
+                </header>
+                <div class="selected__good___content_of_comment">
+                    <span>{{comment.content}}</span>
+                </div>
+                <footer>
+                    <span class="selected__good___data_of_comment">{{comment.date | date:'medium'}}</span>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+</div>

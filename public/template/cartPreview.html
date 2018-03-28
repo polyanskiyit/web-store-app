@@ -1,0 +1,49 @@
+<div class="cart__dropdown-content">
+    <div ng-if="statusCartEmpty" class="cart___text_prev">Cart is empty</div>
+    <div class="cart__dropdown__content___style">
+        <div class="cart___table__scroll">
+            <table ng-if="statusCartTable" class="table">
+                <tbody class="cart___table__prev">
+                    <tr valign="top" class="cart__prev___table__td" ng-repeat="i in cartListOfGoods track by $index">
+                        <td>{{i.name}}</td>
+                        <td>|</td>
+                        <td>{{i.price}}$</td>
+                        <td>|</td>
+                        <td class="text-center">
+                            <div class="cart__prev___style_for_CountIndicator">
+                                <div>
+                                    <a class="btn cart__plus___btn" ng-click="Plus(i.id)">
+                                        <span class='glyphicon glyphicon-plus'></span>
+                                    </a>
+                                </div>
+                                <div class="cart____countOfOneGood_style">
+                                    <span>{{i.countOfOneGood}}</span>
+                                </div>
+                                <div>
+                                    <a class="btn cart__minus___btn" ng-click="Minus(i.id)">
+                                        <span class='glyphicon glyphicon-minus'></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" ng-click="deleteFromCart(i.id)"><span class="glyphicon glyphicon-trash"></span></a>
+                        </td>
+                        <td class="text-center">
+                            <span class="chat__prev___sum_of__goods">{{sumOfNumberGoodPrice(i)}}$</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-if="statusCartTable" class="cart__block_info__sum_and_count___goods">
+            <div>Count of Goods: <span class="chat__prev___sum_of__goods">{{countOfGoods}}</span></div>
+            <div>Price: <span class="chat__prev___sum_of__goods">{{SumOfGoodsPrice}}$</span></div>
+        </div>
+        <a ng-if="statusCartTable" href="" class="btn btn-default cart__btn__fast___choose_cart" ng-click="chooseCart()">Go to cart</a>
+        <a ng-if="statusCartTable" href="" class="btn btn-success cart__btn__fast___send" ng-click="chooseSubmitCartReq()">Send</a>
+    </div>
+</div>

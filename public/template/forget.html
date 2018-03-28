@@ -1,0 +1,19 @@
+<div ng-show="forgetPasswordStatus" id="forgetPasswordBlock">
+    <div class="forget____title">
+        <div class="forget____title__block">
+            <h3 class="forget____title__block___text">Remind password</h3>
+        </div>
+    </div>
+
+    <form role="form" name="remindEmailForm" novalidate>
+        <div class="form-group registration___input__filds">
+            <label for="inputRemindEmail">Email:</label>
+            <input class="form-control" type="email" name="inputRemindEmail" ng-model="remindMail" required>
+            <div class="message__for__invalid__input" ng-show="remindEmailForm.$submitted || remindEmailForm.inputRemindEmail.$touched">
+                <span ng-show="remindEmailForm.inputRemindEmail.$error.required">Required Email</span>
+                <span ng-show="remindEmailForm.inputRemindEmail.$error.email">This is not a valid Email</span>
+            </div>
+        </div>
+        <input class="btn btn-success" id="btnRemindPassword" type="submit" ng-click="remind()" value="Remind">
+    </form>
+</div>

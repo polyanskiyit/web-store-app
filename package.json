@@ -1,0 +1,25 @@
+{
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "email-templates": "^3.1.8",
+        "express": "^4.16.2",
+        "gulp": "^3.9.1",
+        "gulp-concat": "^2.6.1",
+        "gulp-uglifyes": "^0.1.3",
+        "multer": "^1.3.0",
+        "mysql": "^2.15.0",
+        "nodemailer": "^4.4.1",
+        "socket.io": "^2.0.4",
+        "twilio": "^3.11.0"
+    },
+    "name": "slider",
+    "version": "2.0.1",
+    "description": "study project",
+    "main": "runApp",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app.js"
+    },
+    "author": "Polyanskiy Ihor",
+    "license": "ISC"
+}

@@ -1,0 +1,69 @@
+<div ng-if="cartStatus">
+    <div class="cart____title">
+        <div class="cart____title__block">
+            <h3 class="cart____title__block___text">Cart</h3>
+        </div>
+    </div>
+    <div ng-if="statusCartEmpty" class="cart___text_is_empty text-center">
+        <h2><span class="glyphicon glyphicon-shopping-cart"></span> Cart is empty</h2>
+    </div>
+    <div ng-if="statusCartTable">
+        <table class="cart__main__table table table-bordered table-dark">
+            <thead>
+                <th class="text-center">Image</th>
+                <th>Name</th>
+                <th class="text-center">Category</th>
+                <th class="text-center">Price</th>
+                <th class="text-center" colspan="3">Count</th>
+                <th></th>
+                <th class="text-center">Sum</th>
+            </thead>
+            <tbody class="cart___table__prev">
+                <tr valign="top" class="cart__prev___table__td" ng-repeat="i in cartListOfGoods track by $index">
+                    <td width="100" height="100">
+                        <img class="admin__goog__img" src="../img/{{i.src}}" alt="img">
+                    </td>
+                    <td width="400">{{i.name}}</td>
+                    <td width="100" class="text-center">{{i.category}}</td>
+                    <td width="50" class="text-right">{{i.price}}$</td>
+                    <td width="25" class="text-center">
+                        <a class="btn cart__plus___btn" ng-click="Plus(i.id)">
+                            <span class='glyphicon glyphicon-plus'></span>
+                        </a>
+                    </td>
+                    <td width="50" class="text-center">
+                        <div class="cart____countOfOneGood_style">
+                            <span>{{i.countOfOneGood}}</span>
+                        </div>
+                    </td>
+                    <td width="25" class="text-center">
+                        <a class="btn cart__minus___btn" ng-click="Minus(i.id)">
+                            <span class='glyphicon glyphicon-minus'></span>
+                        </a>
+                    </td>
+                    <td width="40" class="text-center">
+                        <button class="btn btn-danger" ng-click="deleteFromCart(i.id)"><span class="glyphicon glyphicon-trash"></span></button>
+                    </td>
+                    <td width="35" class="text-right">
+                        <span><b>{{sumOfNumberGoodPrice(i)}}$</b></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" class="text-right">Sum of the prices:</td>
+                    <td class="text-right">
+                        <span><b>{{SumOfGoodsPrice}}$</b></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input class="btn btn-success" type="button" ng-click="chooseSubmitCartReq()" value="Send to Admin" id="main__cart__btn__sendtoAdmin">
+    </div>
+
+    <slider-block></slider-block>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+</div>

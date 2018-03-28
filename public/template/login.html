@@ -1,0 +1,39 @@
+<div ng-show="loginPageStatus">
+
+    <div class="bg__login____img">
+        <div class="login__page__block" id="loginPageBlock">
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <form role="form" name="logInForm" novalidate>
+                <div class="login__page___input__block">
+                    <div class="form-group">
+                        <input name="inputLogin" type="text" class="form-control login__page___userLogin" id="usrname" placeholder="Login" ng-model="inputLoginModel" required>
+                        <div class="message__for__invalid__input" ng-show="logInForm.$submitted || logInForm.inputLogin.$touched">
+                            <span ng-show="logInForm.inputLogin.$error.required">Required login</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input name="inputPassword" type="password" class="form-control login__page___userPassword" id="psw" placeholder="Password" ng-model="inputPasswordModel" required>
+                        <div class="message__for__invalid__input" ng-show="logInForm.$submitted || logInForm.inputPassword.$touched">
+                            <span ng-show="logInForm.inputPassword.$error.required">Required password</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-block login__page__logIn_page_btn" ng-click="check()" id="btnLogIn">Log In</button>
+                    <div class="text-right">
+                        <p>Not a member? <a href="#" ng-click="chooseRegistrationWindow()" data-dismiss="modal">Sign Up</a></p>
+                        <p>Forgot <a href="#" ng-click="chooseForgetPassword()" data-dismiss="modal">Password?</a></p>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>

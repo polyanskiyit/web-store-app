@@ -1,0 +1,263 @@
+<div ng-if="adminStatus">
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        <ul class="nav nav-pills admin__nav__menu">
+            <li class="active admin__menu_item"><a data-toggle="pill" href="#AdminHome">Messages</a></li>
+            <li class="admin__menu_item"><a data-toggle="pill" href="#AdminOrders">Orders</a></li>
+            <li class="admin__menu_item"><a data-toggle="pill" href="#AdminGoods">Goods</a></li>
+            <li class="admin__menu_item"><a data-toggle="pill" href="#AdminChat">Chat</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="AdminHome" class="tab-pane fade in active">
+                <h3>List of contact messages</h3>
+                <table class="table" border="1">
+                    <thead>
+                        <th>Name</th>
+                        <th>email</th>
+                        <th>phone</th>
+                        <th>Message</th>
+                    </thead>
+                    <tbody ng-repeat="i in listOfContactMessages track by $index">
+                        <tr>
+                            <td>{{i.name}}</td>
+                            <td>{{i.email}}</td>
+                            <td>{{i.phone}}</td>
+                            <td>{{i.message}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="AdminOrders" class="tab-pane fade">
+                <div ng-show="selectedOrderStatus">
+                    <h3>Selected Order</h3>
+                    <table class="table" border="1">
+                        <thead>
+                            <th>First name</th>
+                            <th>Second name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>City</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{orderClientFirstName}}</td>
+                                <td>{{orderClientSecondName}}</td>
+                                <td>{{orderClientPhone}}</td>
+                                <td>{{orderClientEmail}}</td>
+                                <td>{{orderClientCity}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table" border="1">
+                        <thead>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Count</th>
+                            <th class="text-right">Sum</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="i in array track by $index">
+                                <td>{{i.id}}</td>
+                                <td>{{i.name}}</td>
+                                <td>{{i.price}}</td>
+                                <td>{{i.category}}</td>
+                                <td>{{i.orderGoodsCount}}</td>
+                                <td class="text-right">{{CalcGoodSum(i.price, i.orderGoodsCount)}}$</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="text-right">{{CalcAllGoodsSum()}}$</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>List of Orders</h3>
+                <table class="table" border="1">
+                    <thead>
+                        <th>firstName</th>
+                        <th>secondName</th>
+                        <th>phone</th>
+                        <th>email</th>
+                        <th>city</th>
+                        <th>address</th>
+                        <th>additionalInformation</th>
+                        <th>orderGoodsCount</th>
+                    </thead>
+                    <tbody ng-repeat="i in listOfOrders track by $index">
+                        <tr>
+                            <td>{{i.firstName}}</td>
+                            <td>{{i.secondName}}</td>
+                            <td>{{i.phone}}</td>
+                            <td>{{i.email}}</td>
+                            <td>{{i.city}}</td>
+                            <td>{{i.address}}</td>
+                            <td>{{i.additionalInformation}}</td>
+                            <td><a href="" ng-click="GetGoodsByOrder(i)">{{i.orderGoodsCount}}</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="AdminGoods" class="tab-pane fade">
+                <h3>List of Goods</h3>
+                <table class="table" border="1">
+                    <thead>
+                        <th>Id</th>
+                        <th class="text-center">Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>New good</th>
+                        <th>Save money</th>
+                        <th>Old price</th>
+                        <th>Top</th>
+                        <th></th>
+                    </thead>
+                    <tbody ng-if="changeGoodStatus">
+                        <tr>
+                            <td>{{idOfSelectedGood}}</td>
+                            <td width="100" height="100">
+                                <img class="cart-img" src="../img/{{imgSrc}}" alt="img">
+                                <input type="file" file-model="changeImgFile" id="changeFileUpLoad" ng-click="changeSatusImgUpload()">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="Name" id="changeNameOfGood">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="Price" id="changePriceOfGood">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="Category" id="changeCategoryOfGood">
+                            </td>
+                            <td>
+                                <input class="form-control" type="checkbox" id="changeStatusNewOfGood">
+                            </td>
+                            <td>
+                                <input class="form-control" type="checkbox" id="statusSaveMoneyOfGood">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="Old price" id="changeOldPriceOfNewGood">
+                            </td>
+                            <td>
+                                <input class="form-control" type="checkbox" id="changeStatusTopOfGood">
+                            </td>
+                            <td width="165">
+                                <input type="button" class="btn btn-success" ng-click="SaveChanges()" value="Save">
+                                <input type="button" class="btn btn-warning" ng-click="CancelGoodChanges()" value="Cansel">
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <tbody ng-if="!changeGoodStatus">
+                        <tr ng-repeat="i in listOfGoods track by $index">
+                            <td>{{i.id}}</td>
+                            <td width="100" height="100">
+                                <img class="admin__goog__img" src="../img/{{i.src}}" alt="img">
+                            </td>
+                            <td>{{i.name}}</td>
+                            <td>{{i.price}}</td>
+                            <td>{{i.category}}</td>
+                            <td>{{i.new_good}}</td>
+                            <td>{{i.save_money}}</td>
+                            <td>{{i.old_price}}</td>
+                            <td>{{i.top_good}}</td>
+                            <td width="165">
+                                <input type="button" class="btn btn-warning" ng-click="ChangeObject(i.id)" value="Change">
+                                <input type="button" class="btn btn-danger" ng-click="RemoveObject(i.id)" value="Delete">
+                            </td>
+                        </tr>
+                        <tr ng-if="!createNewGoodStatus">
+                            <td colspan="100%">
+                                <input type="button" value="Add" class="btn btn-success" ng-click="OpenRowCreateNewGood()">
+                            </td>
+                        </tr>
+                        <tr ng-if="createNewGoodStatus">
+                            <td></td>
+                            <td>
+                                <input type="file" file-model="myFile" id="fileUpLoad">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="Name" id="nameOfNewGood">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="Price" id="priceOfNewGood">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="Category" id="categoryOfNewGood">
+                            </td>
+                            <td>
+                                <label>New good</label>
+                                <input class="form-control" type="checkbox" id="statusNewOfGood">
+                            </td>
+                            <td>
+                                <label>Save money</label>
+                                <input class="form-control" type="checkbox" id="statusSaveMoneyOfGood">
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="Old price" id="newOldPriceOfNewGood">
+                            </td>
+                            <td>
+                                <label>Top</label>
+                                <input class="form-control" type="checkbox" id="statusTopOfGood">
+                            </td>
+                            <td width="165">
+                                <input type="button" class="btn btn-success" ng-click="CreateNewGood()" value="Create">
+                                <input type="button" class="btn btn-warning" ng-click="CanselNewGood()" value="Cansel">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="AdminChat" class="tab-pane fade">
+                <br>
+                <br>
+                <div class="client__chat__main__block">
+                    <div class="client__chat__users">
+                        <div class="client__chat__users___title">
+                            <strong>List of users</strong>
+                        </div>
+                        <div ng-repeat="j in listOfUserForChat track by $index">
+                            <input type="button" class="chat__user___btn" ng-click="GetChatByUser(j)" value="{{j}}">
+                        </div>
+                    </div>
+                    <div class="client__main___chat_block">
+                        <div>
+                            <span> Selected user: <strong>{{selectedChatUser}}</strong></span>
+                        </div>
+                        <div class="client__chat__user__selected__messages">
+                            <div ng-repeat="i in ArrayOfUserMessages | orderBy:'+':true">
+                                <div><strong>{{i.name}}:</strong> {{i.message}} - {{i.date | date:'medium'}}</div>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="inputClientUserProperty">User (Admin name):</label>
+                            <input name="inputClientUserProperty" type="text" id="inputClientUser" value="Admin" placeholder="user or room name">
+                        </div>
+                        <div>
+                            <label for="inputTextProperty">Your message:</label>
+                            <input name="inputTextProperty" type="text" id="inputText">
+                        </div>
+                        <div>
+                            <input type="button" ng-click="SendMessageByAdmin()" value="Send">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <br>
+    <br>
+    <br>
+</div>

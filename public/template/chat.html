@@ -1,0 +1,28 @@
+<div>
+    <div class="chat__block" id="firebaseChatBlock">
+        <form role="form" name="ChatFirebaseForm" novalidate>
+            <div class="chat___header">
+                <input name="chatUserName" type="text" placeholder="Your name" id="chat___header_input" ng-model="chatUserNameInput" required>
+            </div>
+            <div class="chat___content">
+                <label for="chatMessageText">Chat:</label>
+                <div name="chatMessageText" id="chatContentTextarea">
+                    <div id="chatContentBlock" class="chat___content___item" ng-repeat="m in listOfChatMessages | orderBy:'+':true">
+                        <div ng-model="chatItem" id="chatMessageItem"><span><strong>{{m.name}}:</strong> {{m.message}}</span>
+                            <div class="chat___content___item_data">{{m.date | date:'medium'}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat___footer">
+                <input name="chatMessage" type="text" placeholder="Message..." id="chat___footer_input_text" ng-model="messageText" required>
+                <a href="#" ng-click="SendMessageToFirebaseServer()" class="glyphicon glyphicon-send chat___footer___send_btn"></a>
+            </div>
+        </form>
+    </div>
+
+    <!--    <input class="btn btn-success" type="button" ng-click="OpenCloseChatBtn()" id="open__close_chat_btn" value="Open chat">-->
+    <div class="open__close_chat_btn__block">
+        <button class="btn btn-success" ng-click="OpenCloseChatBtn()" id="open__close_chat_btn"><i class="fa fa-comments"></i></button>
+    </div>
+</div>

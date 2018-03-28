@@ -1,0 +1,4 @@
+{
+  "ignore": ["chatMessages.json"],
+  "ignore": ["increaseAttendanceOfTheGoods.json"]
+}

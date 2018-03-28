@@ -1,0 +1,100 @@
+<div ng-if="contactUsStatus">
+    <div class="contact__title">
+        <div class="contact__title__content">
+            <h1>Contact</h1>
+        </div>
+    </div>
+
+    <div class="contact__info">
+        <div class="contact__info__content">
+            <i class="fa fa-map-marker contact__info__content___icons" aria-hidden="true"></i>
+            <span>Lviv, Ukr</span>
+        </div>
+        <div class="contact__info__content">
+            <i class="fa fa-phone contact__info__content___icons" aria-hidden="true"></i>
+            <span><strong>Phone:</strong> +38 (000) 000 00 00</span>
+        </div>
+        <div class="contact__info__content">
+            <i class="fa fa-envelope contact__info__content___icons" aria-hidden="true"></i>
+            <span><strong>Email:</strong> pol@gmail.com.ua</span>
+        </div>
+    </div>
+
+    <div>
+        <div id="contactGoogleMap"></div>
+    </div>
+
+    <div class="contact__send">
+        <div class="contact__send___title">
+            <h1>Contact us</h1>
+        </div>
+        <div class="contact__send___subtitle">
+            <span>To contact us, fill in the form below and we will contact you directly.</span>
+        </div>
+
+        <div class="contact__send__message">
+            <form role="form" name="ContactUsForm" novalidate>
+                <div class="form-group">
+                    <label class="contact___message_label" for="name">Name:
+                        <span class="message__for__invalid__input" ng-show="ContactUsForm.$submitted || ContactUsForm.name.$touched">
+                            <span ng-show="ContactUsForm.name.$error.required">Required your name</span>
+                        </span>
+                    </label>
+                    <input name="name" type="text" class="form-control contact___message_input" placeholder="Name" id="contactInputName" required ng-model="inputName">
+                </div>
+                <div class="form-group">
+                    <label class="contact___message_label" for="email">Email * :
+                        <span class="message__for__invalid__input" ng-show="ContactUsForm.$submitted || ContactUsForm.email.$touched">
+                            <span ng-show="ContactUsForm.email.$error.required">Required your Email</span>
+                        </span>
+                        <span class="message__for__invalid__input" ng-show="ContactUsForm.$submitted || ContactUsForm.email.$touched">
+                            <span ng-show="ContactUsForm.email.$error.email">This is not a valid Email</span>
+                        </span>
+                    </label>
+                    <input name="email" type="email" class="form-control contact___message_input" placeholder="pol@com.ua" id="contactInputEmail" required ng-model="inputEmail">
+                </div>
+                <div class="form-group">
+                    <label class="contact___message_label" for="phone">Phone:
+                        <span class="message__for__invalid__input" ng-show="ContactUsForm.$submitted || ContactUsForm.phone.$touched">
+                            <span ng-show="ContactUsForm.phone.$error.required">Required phone</span>
+                        </span>
+                    </label>
+                    <input name="phone" type="tel" class="form-control contact___message_input" placeholder="+38 (000) 000 00 00" id="contactInputPhone" required ng-model="inputPhone">
+                </div>
+                <div class="form-group">
+                    <label class="contact___message_label" for="message">Message * :
+                        <span class="message__for__invalid__input" ng-show="ContactUsForm.$submitted || ContactUsForm.message.$touched">
+                            <span ng-show="ContactUsForm.message.$error.required">Required your message</span>
+                        </span>
+                        <span class="message__for__invalid__input" ng-show="ContactUsForm.$submitted || ContactUsForm.message.$touched">
+                            <span ng-show="ContactUsForm.message.$error.maxlength">Maximum allowed number of characters: 500</span>
+                        </span>
+                    </label>
+                    <textarea rows="4" name="message" type="text" class="form-control contact___message_input contact___message_textarea" id="contactInputMessage" required ng-maxlength="500" ng-model="inputMessage"></textarea>
+                </div>
+
+                <input ng-disabled="ContactUsForm.name.$error.required || ContactUsForm.email.$error.required || ContactUsForm.email.$error.email || ContactUsForm.phone.$error.required || ContactUsForm.message.$error.required || ContactUsForm.message.$error.maxlength" type="button" class="btn btn-light pull-right contact___message_send_btn" value="Send" ng-click="SendMessage()">
+            </form>
+        </div>
+    </div>
+
+
+
+    <script>
+        function initGoogleMap() {
+            var uluru = {
+                lat: 49.83826,
+                lng: 24.02324
+            };
+            var googleMap = new google.maps.Map(document.getElementById('contactGoogleMap'), {
+                zoom: 11,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: googleMap
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwXbHBLJfWEsa6bVZxtCdFgPMKQrytRyU&callback=initGoogleMap"></script>
+</div>

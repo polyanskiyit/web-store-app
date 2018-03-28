@@ -1,0 +1,63 @@
+<div>
+    <selectedgood-block></selectedgood-block>
+
+    <div ng-show="allItems">
+        <div class="good__search_block">
+            <input type="text" class="good___search__input" placeholder="Search" ng-change="changeFindInput()" ng-model="inputFinder.$">
+
+            <div class="good__sort">
+                <input class="good__sort_btn" type="button" value="Sort by id" ng-click="SortBy('id')">
+                <input class="good__sort_btn" type="button" value="Sort by Price: Low to High" ng-click="SortBy('price')">
+                <input class="good__sort_btn" type="button" value="Sort by Price: High to Low" ng-click="SortByReverse('price')">
+                <input class="good__sort_btn" type="button" value="Sort by Visitors" ng-click="SortByReverse('countOfVisitors')">
+            </div>
+        </div>
+
+        <div class="menu__category__filter" id="menuCategoryFilterElement">
+            <div class="menu__category__item">
+                <input type="button" class="menu__category__item___btn" ng-click="categoryList()" value="All Goods">
+            </div>
+            <div class="menu__category__item" ng-repeat="filterByName in listOfGoods | unique:'category'">
+                <input type="button" class="menu__category__item___btn" ng-click="categoryList(filterByName.category)" value="{{filterByName.category}}">
+            </div>
+        </div>
+
+        <input type="button" class="btn btn-success" id="btnHideCategoryMenu" ng-click="HideCategoryMenu()" value="Open/Hide menu">
+
+        <div class="main___good__block" id="goodsBlockElement">
+            <div class="main___good____content">
+                <div ng-repeat="i in listOfGoods | filter:category | filter: inputFinder | orderBy:goodProperty:reverse | limitTo:rowLimit" class="good__block">
+                    <div class="card-block">
+                        <img class="cart-img" src="../img/{{i.src}}" alt="img">
+                        <div class="block__content____info">
+                            <div class="good__block___social__information">
+                                <span class="good__block___social__information___margin-right" ng-show="i.top_good == 'true'">
+                                    <b style="color:#f60;">Top</b>
+                                </span>
+                                <span class="good__block___social__information___margin-right" ng-show="i.new_good == 'true'">
+                                    <b style="color:green;">New</b>
+                                </span>
+                                <span class="good__block___social__information___margin-right" ng-show="0 != GetGoodsAttendance(i.id)">
+                                    <i class="fa fa-eye"></i> <b>{{i.countOfVisitors}}</b>
+                                </span>
+                                <span class="good__block___social__information___margin-right" ng-show="0 != GetCommentsCount(i.comments)">
+                                    <i class="fa fa-comment" aria-hidden="true"></i> <b>{{i.countOfTheCommets}}</b>
+                                </span>
+                                <div>
+                                    <span class="good__block___social__information___margin-right" ng-show="i.save_money == 'true'">
+                                    <b style="color:red;">Save money</b>
+                                </span>
+                                </div>
+                            </div>
+                            <a href="#" class="card-title" ng-click="ChooseSelectedGood(i.id)">{{i.name}}</a>
+                            <p class="card-text"><strong>Price:</strong> <span ng-show="i.old_price != null && i.old_price != ''" class="cart-text-price-number" style="color:darkred"><strike>{{i.old_price}}$</strike></span> <span class="cart-text-price-number">{{i.price}}$</span></p>
+                            <a href="#" class="btn btn-warning card-btn" ng-click="addGoodItemToCart(i.id)">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+                <input class="good__block btn btn-success good__block__get_more_goods" id="getMoreGoodsBtn" type="button" ng-click="GetMoreGoods()" value="Get more...">
+            </div>
+        </div>
+
+    </div>
+</div>

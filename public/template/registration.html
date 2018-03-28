@@ -1,0 +1,81 @@
+<div ng-if="registrationStatus" id="registrationBlock">
+    <div class="registration____title">
+        <div class="registration____title__block">
+            <h3 class="registration____title__block___text">Registration</h3>
+        </div>
+    </div>
+
+    <div class="registration___input__filds container">
+        <form role="form" name="RegistrationForm" novalidate>
+            <div class="form-group">
+                <label for="inputNewName">Name:
+                    <span class="message__for__invalid__input" ng-show="RegistrationForm.$submitted || RegistrationForm.inputNewName.$touched">
+                        <span ng-show="RegistrationForm.inputNewName.$error.required">Required your name</span>
+                    </span>
+                </label>
+                <input class="form-control" type="text" name="inputNewName" id="newName" ng-model="inputNewName" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <label for="inputNewEmail">Email:
+                    <span class="message__for__invalid__input" ng-show="RegistrationForm.$submitted || RegistrationForm.inputNewEmail.$touched">
+                        <span ng-show="RegistrationForm.inputNewEmail.$error.required">Required your Email</span>
+                    <span ng-show="RegistrationForm.inputNewEmail.$error.email">This is not a valid Email</span>
+                    </span>
+                </label>
+                <input class="form-control" type="email" name="inputNewEmail" id="newEmail" ng-model="inputNewEmail" placeholder="pol@gmail.com" required>
+            </div>
+            <div class="form-group">
+                <label for="inputNewLogin">Login:
+                    <span class="message__for__invalid__input" ng-show="RegistrationForm.$submitted || RegistrationForm.inputNewLogin.$touched">
+                       <span ng-show="RegistrationForm.inputNewLogin.$error.required">Required your Login</span>
+                    </span>
+                </label>
+                <input class="form-control" type="text" name="inputNewLogin" id="newLogin" ng-model="inputNewLogin" required placeholder="Login">
+            </div>
+            <div class="form-group">
+                <label for="inputNewPassword">Password:
+                    <span class="message__for__invalid__input" ng-show="RegistrationForm.$submitted || RegistrationForm.inputNewPassword.$touched">
+                        <span ng-show="RegistrationForm.inputNewPassword.$error.required">Required your password</span>
+                    </span>
+                </label>
+                <input class="form-control" type="password" name="inputNewPassword" id="newPassword" ng-model="inputNewPassword" required placeholder="********">
+            </div>
+            <div class="form-group">
+                <label for="inputNewConfirmedPassword">Confirm password:
+                    <span class="message__for__invalid__input" ng-show="RegistrationForm.$submitted || RegistrationForm.inputNewConfirmedPassword.$touched">
+                        <span ng-show="RegistrationForm.inputNewConfirmedPassword.$error.required">Required your confirm password</span>
+                    <span ng-show="!RegistrationForm.inputNewConfirmedPassword.$error.required && RegistrationForm.inputNewConfirmedPassword.$error.pwmatch">Passwords do not match</span>
+                    </span>
+                </label>
+                <input class="form-control" type="password" name="inputNewConfirmedPassword" id="newConfirmedPassword" ng-model="inputNewConfirmedPassword" required placeholder="********" pw-check="newPassword">
+            </div>
+            <div class="form-group">
+                <label for="inputNewPhone">Phone:
+                    <span class="message__for__invalid__input" ng-show="RegistrationForm.$submitted || RegistrationForm.inputNewPhone.$touched">
+                        <span ng-show="RegistrationForm.inputNewPhone.$error.required">Required phone</span>
+                    </span>
+                </label>
+                <input class="form-control" type="tel" name="inputNewPhone" id="newUserPhone" placeholder="+380681234567" ng-model="newPhone" required>
+                <input class="btn btn-primary registration___verificate__btn" type="button" ng-click="verification()" value="Verificate">
+            </div>
+            <div class="form-group">
+                <label for="inputVerCode">Verificated code:
+                    <span class="message__for__invalid__input" ng-show="RegistrationForm.$submitted || RegistrationForm.inputVerCode.$touched">
+                        <span ng-show="RegistrationForm.inputVerCode.$error.required">Required verification code</span>
+                    </span>
+                </label>
+                <input class="form-control" type="text" name="inputVerCode" ng-model="newVerCode" id="newUserVerCode" placeholder="xxxx" required>
+            </div>
+            <input class="btn btn-success" id="registration___btn" type="button" ng-click="chooseRegistration()" value="Register" ng-disabled="RegistrationForm.inputNewName.$error.required || RegistrationForm.inputNewEmail.$error.required || RegistrationForm.inputNewEmail.$error.email || RegistrationForm.inputNewLogin.$error.required || RegistrationForm.inputNewPassword.$error.required || RegistrationForm.inputNewConfirmedPassword.$error.required || RegistrationForm.inputNewConfirmedPassword.$error.pwmatch || RegistrationForm.inputNewPhone.$error.required || RegistrationForm.inputVerCode.$error.required">
+        </form>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</div>
