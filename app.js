@@ -27,9 +27,9 @@ var smtpTransport = nodemailer.createTransport({
 //  MYSQL
 const connection = mysql.createConnection({
     host: 'localhost',
-    user: 'Polianskyi',
-    password: '0987hgyt_Qwe_1',
-    database: 'storedb'
+    user: '*****',
+    password: '*****',
+    database: '*****'
 });
 
 //Клієнтська частина сайту знаходитиметься у папці public
