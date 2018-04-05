@@ -1,5 +1,5 @@
-const appLogin = "ipolianskyi@gmail.com";
-const appPassword = "1093tgfhOPSA_~asd";
+const appLogin = "*****";
+const appPassword = "*****";
 
 exports.login = appLogin;
 exports.password = appPassword;
